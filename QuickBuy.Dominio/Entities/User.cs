@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuickBuy.Domain.Entities
 {
-    public class User
+    public class User : Entity
     {
         public int Id { get; set; }
         public string Email { get; set; }
@@ -12,6 +12,15 @@ namespace QuickBuy.Domain.Entities
         public string Name { get; set; }
         public string LastName { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } //virtual permite que FCore faça sobreposição da ICollection
+
+        public override void Validate()
+        {
+            if (string.IsNullOrEmpty(Email))
+                AddValidationsMessage("Email is required");
+
+            if (string.IsNullOrEmpty(Password))
+                AddValidationsMessage("Password is required");
+        }
     }
 }

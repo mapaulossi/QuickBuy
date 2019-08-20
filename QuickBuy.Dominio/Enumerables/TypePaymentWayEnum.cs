@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuickBuy.Domain.Enumerables
 {
-    public enum TypePaymentWayEnum
+    public enum TypePaymentMethodEnum
     {
         NotDefined = 0,
         Billet = 1,
