@@ -11,7 +11,7 @@ namespace QuickBuy.Repository.Context
 {
     public class QuickBuyContext : DbContext
     {
-       
+
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -31,6 +31,26 @@ namespace QuickBuy.Repository.Context
             modelBuilder.ApplyConfiguration(new PaymentMethodConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+
+            //Carga inicial PaymentMethod
+            modelBuilder.Entity<PaymentMethod>().HasData(
+                new PaymentMethod()
+                {
+                    Id = 1,
+                    Name = "Billet",
+                    Description = "Payment Method is Billet"
+                },
+                new PaymentMethod()
+                {
+                    Id = 2,
+                    Name = "CreditCard",
+                    Description = "Payment Method is CreditCard"
+                },
+                new PaymentMethod() {
+                    Id = 3,
+                    Name = "Deposit",
+                    Description = "Payment Method is Deposit"
+                });
 
             base.OnModelCreating(modelBuilder);
         }

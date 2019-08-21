@@ -45,6 +45,9 @@ namespace QuickBuy.Repository.Config
             builder
                 .Property(o => o.AddressNumber)
                 .IsRequired();
+
+            builder
+                .HasOne(o => o.PaymentMethod);
         }
     }
 }

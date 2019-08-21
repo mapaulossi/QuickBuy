@@ -19,12 +19,12 @@ namespace QuickBuy.Domain.Entities
         public string FullAddress { get; set; }
         public int AddressNumber { get; set; }
         public int PaymentMethodId { get; set; }
-        public PaymentMethod PaymentMethod { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
         /// Order deve ter pelo menos um Item ou muitos
         /// </summary>
-        public ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
         public override void Validate()
         {
