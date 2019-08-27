@@ -1,0 +1,57 @@
+<!-- Não precisa das tags padrões (ANgular ignora)-->
+<div class="text-center">
+  <form class="form-signin">
+    <h1 class="h4 mb-3 login">Sign In</h1>
+
+    <label for="inputEmail" class="sr-only">Email</label> <!-- sr-only Para deficiência visual-->
+    <input type="email" id="inputEmail"
+           name="email" placeholder="Enter your Email"
+           class="form-control mb-2"
+           [(ngModel)]="user.email"
+           #email="ngModel"
+           [ngClass]="{
+           'is-invalid':email.invalid && (email.dirty || email.touched),
+           'is-valid':email.valid && (email.dirty || email.touched)
+           }"
+           email
+           required /> <!-- email é uma Variável -- Restrições sao o email(formato) e required-->
+    <!--[ngClass] adiciona classe nas classes já criadas-->
+
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        Email is required!
+      </div>
+      <div *ngIf="email.errors.email">
+        Wrong email format!
+      </div>
+
+    </div>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword"
+           name="password" placeholder="Password"
+           class="form-control mb-2"
+           [(ngModel)]="user.password"
+           #password="ngModel"
+           [ngClass]="{
+           'is-invalid':password.invalid && (password.dirty || password.touched),
+           'is-valid':password.valid && (password.dirty || password.touched)
+           }"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors.required">
+        Password is required!
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-block mb-2" type="submit" (click)="enter()">Enter</button>
+
+    <img src="../../../assets/img/buyphoto-login.jpg" />
+
+
+
+  </form>
+
+</div>
+
