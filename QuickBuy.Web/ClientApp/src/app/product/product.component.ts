@@ -14,7 +14,7 @@ export class ProductComponent {
 
   public getName(): string {
     
-    return "Xiaomi s2";
+    return "Zys comuna -- Cadê o volante do Renan?";
 
   }
 }

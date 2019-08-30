@@ -1,7 +1,7 @@
 <!-- Não precisa das tags padrões (ANgular ignora)-->
 <div class="text-center">
   <form class="form-signin">
-    <h1 class="h4 mb-3 login">Sign In</h1>
+    <h1 class="h4 mb-3 login">Log In</h1>
 
     <label for="inputEmail" class="sr-only">Email</label> <!-- sr-only Para deficiência visual-->
     <input type="email" id="inputEmail"
@@ -45,7 +45,14 @@
       </div>
     </div>
 
-    <button class="btn btn-primary btn-block mb-2" type="submit" (click)="enter()">Enter</button>
+    <button class="btn btn-primary btn-block mb-2" type="submit" (click)="enter()" [disabled]="spinner_active">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="spinner_active"></span>
+      Enter
+    </button>
+
+    <div class="alert alert-danger" *ngIf="message">
+      {{message}}
+    </div>
 
     <img src="../../../assets/img/buyphoto-login.jpg" />
 

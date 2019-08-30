@@ -11,7 +11,7 @@ namespace QuickBuy.Repository.Context
 {
     public class QuickBuyContext : DbContext
     {
-
+        //Cria tabelas
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }

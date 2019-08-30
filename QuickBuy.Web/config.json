@@ -1,6 +1,8 @@
 {
-    "ConnectionStrings": {
-        "SqlServerConnection" : "", 
-        "MySqlConnection": "server=localhost;uid=root;pwd=123456;database=QuickBuyDB"
-    }
+  "ConnectionStrings": {
+    "SqlServerConnection": "",
+    "MySqlConnection": "server=localhost;uid=root;pwd=123456;database=QuickBuyDB"
+    //"MySqlConnection": "server=remotemysql.com;uid=Uzkgq11p2M;pwd=QOXArkxhIf;database=Uzkgq11p2M" //remote MySQL
+
+  }
 }

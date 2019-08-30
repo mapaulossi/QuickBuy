@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { UserService } from '../services/user/user.service';
 
 @Injectable({
   providedIn: 'root' //classe SaveRoutes será publicada na raíz
@@ -7,16 +8,17 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 export class SaveRoutes implements CanActivate {
 
-  constructor(private router: Router) { //router injetado do app.module porcausa do @Injectable
+  constructor(private router: Router, private userService: UserService) { //router injetado do app.module porcausa do @Injectable
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    var authenticated = sessionStorage.getItem('user-authenticated');  //localStoraged nativo do JS
-    if (authenticated == "1") {
+
+    if (this.userService.user_authenticated()) {
       return true;
     }
+
     //chama do ctor
-    alert(state.url);
+    
     this.router.navigate(['/enter'], { queryParams: { returnUrl: state.url } }); //queryParams configura pg de retorno
     return false;
   }
