@@ -1,0 +1,15 @@
+.title {
+  color: #665;
+}
+
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: "Select";
+}
+
+.invalid-feedback{
+  display: block;
+}
+
+.valid-feedback {
+  display: block;
+}

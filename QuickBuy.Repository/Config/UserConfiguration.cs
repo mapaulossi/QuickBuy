@@ -23,7 +23,7 @@ namespace QuickBuy.Repository.Config
             builder
                 .Property(u => u.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(50); //não atualiza
 
             builder
                 .Property(u => u.Password)

@@ -1,11 +1,41 @@
 <!-- Não precisa das tags padrões (ANgular ignora)-->
 <div class="text-center">
   <form class="form-signin">
-    <h1 class="h4 mb-3 login">Log In</h1>
+    <h1 class="h4 mb-3 login">Create Account</h1>
+
+    <label for="inputName" class="sr-only">Name</label> <!-- sr-only Para deficiência visual-->
+    <input type="text" id="inputName"
+           name="name" placeholder="Name"
+           class="form-control mb-2"
+           [(ngModel)]="user.name"
+           #name="ngModel"
+           [ngClass]="{}"
+           required /> <!-- user.name faz bind com user.name do TypeSript-->
+
+    <div class="invalid-feedback mb-2" *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors.required">
+        Name is required!
+      </div>
+    </div>
+
+    <label for="inputLastName" class="sr-only">LastName</label> <!-- sr-only Para deficiência visual-->
+    <input type="text" id="inputLastName"
+           name="lastName" placeholder="Last Name"
+           class="form-control mb-2"
+           [(ngModel)]="user.lastName"
+           #lastName="ngModel"
+           [ngClass]="{}"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+      <div *ngIf="lastName.errors.required">
+        Last Name is required!
+      </div>
+    </div>
 
     <label for="inputEmail" class="sr-only">Email</label> <!-- sr-only Para deficiência visual-->
     <input type="email" id="inputEmail"
-           name="email" placeholder="Enter your Email"
+           name="email" placeholder="Email"
            class="form-control mb-2"
            [(ngModel)]="user.email"
            #email="ngModel"
@@ -39,13 +69,14 @@
       </div>
     </div>
 
-    <button class="btn btn-primary btn-block mb-2" type="submit" (click)="enter()" [disabled]="spinner_active">
+    <button class="btn btn-primary btn-block mb-2" type="submit" (click)="register()" [disabled]="spinner_active">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="spinner_active"></span>
-      Enter
+      Register
     </button>
-
     <div>
-      New here? <a [routerLink]='["/new-user"]'>Register</a>
+      <a [routerLink]='["/enter"]'>
+        Return
+      </a>
     </div>
 
     <div class="alert alert-danger" *ngIf="message">

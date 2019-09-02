@@ -1,0 +1,57 @@
+<h1 class="h4 title">Product Registration</h1>
+<label for="inputNameProduct" class="sr-only">Product Name</label>
+<input type="text" id="inputNameProduct"
+       name="productName" placeholder="Product Name"
+       class="form-control mb-2 col-md-4"
+       [ngClass]="{}"
+       [(ngModel)]="product.name"
+       #productName="ngModel"
+       required />
+<!--Informações sao armzenadas dentro do #productName
+    ngClass Adiciona folhas de estilo a class
+    ngModel = objeto do product.component.ts-->
+<div class="invalid-feedback mb-2" *ngIf="productName.invalid && (productName.dirty || productName.touched)">
+  <div *ngIf="productName.errors.required">
+    Product name is required!
+  </div>
+</div>
+
+<label for="inputDescription" class="sr-only">Product Description</label>
+<input type="text" id="inputDescription"
+       name="description" placeholder="Product Description"
+       class="form-control mb-2 col-md-4"
+       [ngClass]="{}"
+       [(ngModel)]="product.description"
+       #productDescription="ngModel"
+       required />
+
+<div class="invalid-feedback mb-2" *ngIf="productDescription.invalid && (productDescription.dirty || productDescription.touched)">
+  <div *ngIf="productDescription.errors.required">
+    Product description is required!
+  </div>
+</div>
+
+<label for="inputPrice" class="sr-only">Product Price</label>
+<input type="number" id="inputPrice"
+       name="price" placeholder="Price"
+       class="form-control mb-2 col-md-2"
+       [ngClass]="{}"
+       [(ngModel)]="product.price"
+       #productPrice="ngModel"
+       required />
+
+<div class="invalid-feedback mb-2" *ngIf="productPrice.invalid && (productPrice.dirty || productPrice.touched)">
+  <div *ngIf="productPrice.errors.required">
+    Product price is required!
+  </div>
+</div>
+
+<div class="input-group  mb-3 ">
+  <div class="custom-file col-md-4">
+    <input type="file" class="custom-file-input" id="inputFile  " />
+    <label for="inputFile" class="custom-file-label mb-2 ">Choose a photo</label>
+  </div>
+</div>
+
+<!--registerProduct() classe do product.component.ts-->
+<button class="btn btn-primary" (click)="registerProduct()">Register</button>

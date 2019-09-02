@@ -22,3 +22,12 @@
 .login{
   color: #667;
 }
+
+.invalid-feedback {
+  display: block;
+}
+
+.valid-feedback {
+  display: block;
+}
+
