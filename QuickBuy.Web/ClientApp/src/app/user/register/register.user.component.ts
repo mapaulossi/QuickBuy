@@ -10,8 +10,11 @@ import { UserService } from '../../services/user/user.service';
 })
 
 export class RegisterUserComponent implements OnInit {
-   
+
   public user: User;
+  public spinner_active: boolean;
+  public message: string;
+  public registerUser: boolean;
 
   constructor(private userService: UserService) {
 
@@ -22,13 +25,21 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public register() {
+
+    this.spinner_active = true;
     this.userService.registerUser(this.user)
       .subscribe(
         userJson => {
+          this.registerUser = true;
+          this.message = "";
+          this.spinner_active = false;
 
         },
 
         err => {
+          this.registerUser = false;
+          this.message = err.error;
+          this.spinner_active = false;
 
         }
       );

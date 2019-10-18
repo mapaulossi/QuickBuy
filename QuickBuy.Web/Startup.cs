@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -27,13 +28,15 @@ namespace QuickBuy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //Permite acessar contexto da requisição
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var connectionString = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<QuickBuyContext>(option =>
             option.UseLazyLoadingProxies()
             .UseMySql(connectionString, m => m.MigrationsAssembly("QuickBuy.Repository")));
 
-            services.AddScoped<IProductRepository, ProductRepository>(); //Injeção de dependência
+            services.AddScoped<IProductRepository, ProductRepository>(); //Injeção de dependência (única instância)
             //Possibilita a injeção em qualquer outra classe
             services.AddScoped<IUserRepository, UserRepository>(); //mapeia IUserRepository para UserRepository
 

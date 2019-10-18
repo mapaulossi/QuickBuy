@@ -26,9 +26,13 @@ namespace QuickBuy.Domain.Entities
             validationMessage.Add(message);
         }
 
+        public string GetValidationMessages()
+        {
+            return string.Join("." + Environment.NewLine, validationMessage);
+        }
         public abstract void Validate(); //Abstract força filhos implementarem
 
-        protected bool IsValid
+        public bool IsValid
         {
             get
             {

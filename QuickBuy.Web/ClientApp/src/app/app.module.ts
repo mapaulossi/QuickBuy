@@ -13,6 +13,7 @@ import { SaveRoutes } from './authorization/save.routes';
 import { UserService } from './services/user/user.service';
 import { RegisterUserComponent } from './user/register/register.user.component';
 import { ProductService } from './services/product/product.service';
+import { SearchProductComponent } from './product/search/search.product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { ProductService } from './services/product/product.service';
     HomeComponent,
     ProductComponent,
     LoginComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    SearchProductComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,9 +33,10 @@ import { ProductService } from './services/product/product.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       //{ path: 'product', component: ProductComponent, canActivate: [SaveRoutes] }, //Configura itens de menu e navegação
-      { path: 'product', component: ProductComponent },
+      { path: 'add-product', component: ProductComponent },
       { path: 'enter', component: LoginComponent },
-      { path: 'new-user', component: RegisterUserComponent }
+      { path: 'new-user', component: RegisterUserComponent },
+      { path: 'search-product', component: SearchProductComponent }
     ])
   ],
   providers: [UserService, ProductService],

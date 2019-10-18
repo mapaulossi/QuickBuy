@@ -8,8 +8,8 @@ import { Product } from '../../model/product';
   providedIn: 'root'
 })
 
-export class ProductService implements OnInit{
-    
+export class ProductService implements OnInit {
+
   private _baseUrl: string;
   public products: Product[];
 
@@ -19,7 +19,7 @@ export class ProductService implements OnInit{
   }
 
   ngOnInit(): void {
-    this.products = []; 
+    this.products = [];
   }
 
   get headers(): HttpHeaders {
@@ -31,15 +31,16 @@ export class ProductService implements OnInit{
     return this.http.post<Product>(this._baseUrl + 'api/product/register', JSON.stringify(product), ({ headers: this.headers }));
   }
 
+
   public save(product: Product): Observable<Product> {
 
     return this.http.post<Product>(this._baseUrl + 'api/product/save', JSON.stringify(product), { headers: this.headers });
 
   }
 
-  public delete(product: Product): Observable<Product> {
+  public delete(product: Product): Observable<Product[]> {
 
-    return this.http.post<Product>(this._baseUrl + 'api/product/delete', JSON.stringify(product), { headers: this.headers });
+    return this.http.post<Product[]>(this._baseUrl + 'api/product/delete', JSON.stringify(product), { headers: this.headers });
 
   }
 
@@ -51,4 +52,9 @@ export class ProductService implements OnInit{
     return this.http.get<Product>(this._baseUrl + 'api/product/getProduct');
   }
 
+  public sendFile(selectedFile: File): Observable<string> {
+    const formData: FormData = new FormData();
+    formData.append("sentFile", selectedFile, selectedFile.name);
+    return this.http.post<string>(this._baseUrl + 'api/product/SendFile', formData);
+  }
 }

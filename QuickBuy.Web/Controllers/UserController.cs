@@ -71,5 +71,24 @@ namespace QuickBuy.Web.Controllers
             }
 
         }
+
+        [HttpPost("RegisterUser")]
+        public IActionResult RegisterUser([FromBody] User user)
+        {
+            try
+            {
+                var registerUser = _userRespository.GetRegister(user.Email);
+                if(registerUser != null)
+                {
+                    return BadRequest("User already registered!");
+                }
+                _userRespository.Add(user);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
     }
 }

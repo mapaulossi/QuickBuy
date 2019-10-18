@@ -10,10 +10,20 @@ namespace QuickBuy.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public string FileName { get; set; }
 
         public override void Validate()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(Name))
+            {
+                AddValidationsMessage("Name was not entered!");
+
+            }
+
+            if (string.IsNullOrEmpty(Description))
+            {
+                AddValidationsMessage("Description was not entered!");
+            }
         }
     }
 }

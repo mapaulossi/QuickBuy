@@ -32,4 +32,8 @@ export class NavMenuComponent {
     this.userService.clean_section();
     this.router.navigate(['/']);
   }
+
+  get user() {
+    return this.userService.user;
+  }
 }

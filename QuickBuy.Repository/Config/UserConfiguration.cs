@@ -23,7 +23,8 @@ namespace QuickBuy.Repository.Config
             builder
                 .Property(u => u.Name)
                 .IsRequired()
-                .HasMaxLength(50); //não atualiza
+                .HasColumnType("varchar(30)");
+                //.HasMaxLength(50); 
 
             builder
                 .Property(u => u.Password)

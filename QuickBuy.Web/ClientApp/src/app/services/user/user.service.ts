@@ -38,32 +38,25 @@ export class UserService {
     this.baseURl = baseUrl;
   }
 
+  get headers(): HttpHeaders {
+    return new HttpHeaders().set('content-type', 'application/json'); //formato que vai trafegar na requisição
+  }
+
   public checkUser(user: User): Observable<User> { //(LOJA)verifica o user e retorna observable
 
-    const headers = new HttpHeaders().set('content-type', 'application/json'); //formato que vai trafegar na requisição
-
-    //Json
+    /*Json JSON.stringify(user) entra no lugar
     var body = {
       email: user.email,
       password: user.password
-    }
+    }*/
     //this.baseURl = raíz do site ex: http://www.quickybuy.com/ e concatena com endereço do serviço
-    return this.http.post<User>(this.baseURl + "api/user/CheckUser", body, { headers }); //sem nada pega post padrão
+    return this.http.post<User>(this.baseURl + "api/user/CheckUser", JSON.stringify(user), { headers: this.headers }); //sem nada pega post padrão
 
   }
 
   public registerUser(user: User): Observable<User> {
 
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-
-    var body = {
-      email: user.email,
-      password: user.password,
-      name: user.name,
-      lastName: user.lastName
-    }
-
-    return this.http.post<User>(this.baseURl + "api/user", body, { headers })
+    return this.http.post<User>(this.baseURl + "api/user/RegisterUser", JSON.stringify(user), { headers: this.headers })
   }
 }
 

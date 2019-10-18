@@ -9,8 +9,8 @@ using QuickBuy.Repository.Context;
 namespace QuickBuy.Repository.Migrations
 {
     [DbContext(typeof(QuickBuyContext))]
-    [Migration("20190830141624_UserNameChanged")]
-    partial class UserNameChanged
+    [Migration("20190913132231_new column FileName")]
+    partial class newcolumnFileName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,6 +85,8 @@ namespace QuickBuy.Repository.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(400);
+
+                    b.Property<string>("FileName");
 
                     b.Property<string>("Name")
                         .IsRequired()
